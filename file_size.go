@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-// ルートディレクトリから再帰で潜ってファイルのフルパスを返す
+// Returns the full path to the file
 func dirwalk(dir string) []string {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
@@ -34,7 +34,7 @@ func convertByte2MB(fis int64) int64 {
 }
 
 func main() {
-	// 引数が1つ以外は終了
+	// Exit unless there is a one argument
 	if len(os.Args) != 3 {
 		fmt.Println("The number of arguments specified is incorrect. Only one argument is allowed.")
 		os.Exit(1)
@@ -43,18 +43,15 @@ func main() {
 	var filesize int
 	f := os.Args[1]
 	filesize, _ = strconv.Atoi(f)
-	//fmt.Println(filesize)
 	dir := os.Args[2]
 
-	// 対象のルートディレクトリ
+	// Target root directory
 	paths := dirwalk(dir)
 
 	flag := 0
-
 	for _, path := range paths {
-		// ファイル情報を得る
+		// Get the file info
 		fileinfo, staterr := os.Stat(path)
-		//fmt.Println(fileinfo.Size())
 		if staterr != nil {
 			fmt.Println(staterr)
 			return
@@ -63,7 +60,7 @@ func main() {
 		fis := fileinfo.Size()
 		fisMB := convertByte2MB(fis)
 
-		// 指定のMB以上のファイルがあれば出力
+		// Output if the file is larger than the specified MB
 		if fisMB >= int64(filesize) {
 			fmt.Println(path, "=>", fisMB, "MB")
 			flag++
@@ -72,7 +69,7 @@ func main() {
 		}
 	}
 
-	// 指定のMB以上のファイルが一つも無ければ出力
+	// Output when there is no one file larger than the specified MB
 	if flag == 0 {
 		fmt.Println("No files larger than", f+"MB were found.")
 	}
