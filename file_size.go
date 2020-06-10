@@ -45,8 +45,7 @@ func main() {
 	filesize, _ = strconv.Atoi(f)
 	dir := os.Args[2]
 
-	// Target root directory
-	paths := dirwalk(dir)
+	paths := dirwalk(dir) // Target root directory
 
 	flag := 0
 	for _, path := range paths {
