@@ -1,7 +1,7 @@
 # file_size
 
 ## Description  
-Search for the specified MB file.
+Search for files with the specified capacity (MB).
 
 ## USAGE
 Build.  
