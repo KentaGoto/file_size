@@ -15,3 +15,6 @@ $ file_size.exe <FILESIZE(MB)> <DIR>
 
 ## REQUIRES
 - Windows
+
+## License
+MIT
