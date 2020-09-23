@@ -18,3 +18,6 @@ $ file_size.exe <FILESIZE(MB)> <DIR>
 
 ## License
 MIT
+
+## Author  
+Kenta Goto
